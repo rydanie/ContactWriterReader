@@ -24,15 +24,22 @@ public class ContactWriterReader {
 	     char option;
 		 Scanner keybd = new Scanner(System.in);
 		 
+		 inputFile =  new BufferedReader(new FileReader( myFile ));
 		 
-		  while( myFile.exists() ) { // input validation needed stops damage
-			 	
-			 	inputFile =  new BufferedReader(new FileReader( myFile ));
+		while( !myFile.exists()){
+	    	  
+	         System.out.print( myFile.getName() + " File Does not exists. new Name: " );
+	         inputString = keybd.nextLine();
+	         myFile = new File( inputString );
+	     }
+		 
+		 while( myFile.exists() ) { // input validation needed stops damage
 			 	System.out.println("This is the information contained in this contact file:\n");
 			 	String line = null;
 			 	
-			 	
-			 	
+			 	while((line = inputFile.readLine()) != null){
+			 		System.out.println(line);
+			 	}
 	            System.out.print( myFile.getName() + " \n\nSince this file exists, would you like to make a new one. "
 	            								+ "\nInput new file name: " );
 	            
@@ -55,7 +62,6 @@ public class ContactWriterReader {
 	    		outputFile.close();
 	    	
 	    	 } else if( option == 'y'){
-	    		 
 	    		 
 	    		 contacts[i] = new ContactTest();
 	    		 
@@ -113,11 +119,11 @@ public class ContactWriterReader {
 	    	        
 	    	        
 	    	        
-	    	        outputFile.println(testContact.getPrefix());
-	    	        outputFile.println(testContact.getFirstName()); 
+	    	        outputFile.println( testContact.getPrefix());
+	    	        outputFile.println(	testContact.getFirstName()); 
 	    	        outputFile.println(testContact.getMiddleName());
 	    	        outputFile.println(testContact.getLastName());
-	    	        outputFile.println(testContact.getOccupation());
+	    	        outputFile.println(	testContact.getOccupation());
 	    	        outputFile.println(testContact.getPhoneNumber());
 	    	        outputFile.println(testContact.getEmail());
 	    	        outputFile.println(testContact.getStreetNumber());
@@ -125,7 +131,7 @@ public class ContactWriterReader {
 	    	        outputFile.println(testContact.getCity());
 	    	        outputFile.println(testContact.getStateAB());
 	    	        outputFile.println(testContact.getZipCode());
-	    	        outputFile.println("                    ");
+	    	        
 	    	        				
 	    		 
 	    	 } else {
