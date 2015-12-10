@@ -37,8 +37,13 @@ public class ContactWriterReader {
 
 			inputFile = new BufferedReader(new FileReader(myFile));
 
-			while ((line = inputFile.readLine()) != null) {
-				System.out.println(line);
+			while (inputFile.ready()) {
+				
+				contacts[numContacts] = new Contact();
+				
+				
+				
+				numContacts++;
 			}
 
 			inputFile.close();
