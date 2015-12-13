@@ -16,19 +16,21 @@ public class ContactWriterReader {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("null")
 	public static void main(String[] args) throws IOException { // NOTE: handles
 																// IOException
 																// from
 																// PrintWriter!
-		File myFile = new File("myOutputFile2.txt");
+		File myFile = new File("myOutputFile.txt");
 		PrintWriter outputFile;
 		BufferedReader inputFile;
 		String inputString;
-		char option;
+		String input;
+		char option = 0;
 		Scanner keyboard = new Scanner(System.in);
 		int numContacts = 0;
-		String input = null;
 
+		
 		Contact[] contacts = new Contact[25];
 
 		if (myFile.exists()) { // input validation needed stops damage
@@ -36,17 +38,99 @@ public class ContactWriterReader {
 			String line = null;
 
 			inputFile = new BufferedReader(new FileReader(myFile));
-
+			
+			
+			
 			while (inputFile.ready()) {
+				
 				
 				contacts[numContacts] = new Contact();
 				
+				line = inputFile.readLine();
+				
+				while(line!=null){
+						System.out.println(line);
+					line = inputFile.readLine();
+				}
 				
 				
-				numContacts++;
-			}
+				
+				System.out.print("\nEnter the last name: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setLastName(input);
 
+				System.out.print("Enter the first name: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setFirstName(input);
+
+				System.out.print("Enter the middle name: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setMiddleName(input);
+
+				System.out.print("Enter your Title (Dr, proffessor, Mr, Mrs): ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setPrefix(input);
+
+				System.out.print("Enter occupation: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setOccupation(input);
+
+				System.out.print("Enter phone number: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setPhoneNumber(input);
+
+				System.out.print("Enter email: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setEmail(input);
+
+				System.out.print("Enter adress number (4 numbers): ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setStreetNumber(input);
+
+				System.out.print("Enter street name: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setStreetName(input);
+
+				System.out.print("Enter city name: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setCity(input);
+
+				System.out.print("Enter state name: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setStateAB(input);
+
+				System.out.print("Enter zip code: ");
+				input = keyboard.nextLine();
+				contacts[numContacts].setZipCode(input);
+
+				System.out.println("Would you like to add another contact? \ny (for yes)\nn (for no)");
+				option = keyboard.nextLine().charAt(0);
+
+				numContacts++;
+			} while (option == 'y');
+				
+				//numContacts++;
+			
+			outputFile = new PrintWriter( new BufferedWriter(new FileWriter(myFile, true)));
+			for (int i = 0; i < numContacts; i++) {
+				outputFile.println(contacts[i].getPrefix());
+				outputFile.println(contacts[i].getFirstName());
+				outputFile.println(contacts[i].getMiddleName());
+				outputFile.println(contacts[i].getLastName());
+				outputFile.println(contacts[i].getOccupation());
+				outputFile.println(contacts[i].getPhoneNumber());
+				outputFile.println(contacts[i].getEmail());
+				outputFile.println(contacts[i].getStreetNumber());
+				outputFile.println(contacts[i].getStreetName());
+				outputFile.println(contacts[i].getCity());
+				outputFile.println(contacts[i].getStateAB());
+				outputFile.println(contacts[i].getZipCode());
+			}
+			outputFile.close(); 
+			
 			inputFile.close();
+			
+			
 
 		} else {
 
