@@ -19,20 +19,23 @@ public class ContactWriterReader {
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws IOException { // NOTE: handles
 																// IOException
-																// from
-																// PrintWriter!
+		//creates a new file																												// PrintWriter!
 		File myFile = new File("myOutputFile.txt");
+		//instantiates printwriter
 		PrintWriter outputFile;
+		//instantiates buffered reader
 		BufferedReader inputFile;
 		String inputString;
 		String input;
 		char option = 0;
+		// new scanner object
 		Scanner keyboard = new Scanner(System.in);
 		int numContacts = 0;
 
-		
+		//creates contact array
 		Contact[] contacts = new Contact[25];
-
+		
+		// if a the file exists
 		if (myFile.exists()) { // input validation needed stops damage
 			System.out.println("This is the information contained in this contact file:\n");
 			String line = null;
@@ -40,10 +43,10 @@ public class ContactWriterReader {
 			inputFile = new BufferedReader(new FileReader(myFile));
 			
 			
-			
+			// Prints out the contents of a file
 			while (inputFile.ready()) {
 				
-				
+				//new contact object
 				contacts[numContacts] = new Contact();
 				
 				line = inputFile.readLine();
@@ -53,8 +56,7 @@ public class ContactWriterReader {
 					line = inputFile.readLine();
 				}
 				
-				
-				
+	
 				System.out.print("\nEnter the last name: ");
 				input = keyboard.nextLine();
 				contacts[numContacts].setLastName(input);
@@ -108,10 +110,11 @@ public class ContactWriterReader {
 
 				numContacts++;
 			} while (option == 'y');
-				
-				//numContacts++;
 			
+			//printwritter object
 			outputFile = new PrintWriter( new BufferedWriter(new FileWriter(myFile, true)));
+			
+			//write to file
 			for (int i = 0; i < numContacts; i++) {
 				outputFile.println(contacts[i].getPrefix());
 				outputFile.println(contacts[i].getFirstName());
@@ -130,10 +133,12 @@ public class ContactWriterReader {
 			
 			inputFile.close();
 			
+			System.exit(0);//end program
 			
-
+			
+			//if the file does not exist
 		} else {
-
+			// printwriter object
 			outputFile = new PrintWriter(myFile);
 
 			do {
@@ -192,7 +197,8 @@ public class ContactWriterReader {
 
 				numContacts++;
 			} while (option == 'y');
-
+			
+			//writes to file
 			for (int i = 0; i < numContacts; i++) {
 				outputFile.println(contacts[i].getPrefix());
 				outputFile.println(contacts[i].getFirstName());
@@ -209,6 +215,8 @@ public class ContactWriterReader {
 			}
 
 			outputFile.close();
+			
+			System.exit(0);// end program
 		}
 	}
 
