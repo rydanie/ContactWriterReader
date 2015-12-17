@@ -19,18 +19,14 @@ public class ContactWriterReader {
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws IOException { // NOTE: handles
 																// IOException
-		//creates a new file																												//
-		File myFile = new File("myOutputFile34.txt");
-
-		//instantiates printwriter
-		PrintWriter outputFile;
-		//instantiates buffered reader
-		BufferedReader inputFile;
+																														//
+		File myFile = new File("myOutputFile34.txt");//creates a new file
+		PrintWriter outputFile;//instantiates printwriter
+		BufferedReader inputFile;//instantiates buffered reader
 		String inputString;
 		String input;
 		char option = 0;
-		// new scanner object
-		Scanner keyboard = new Scanner(System.in);
+		Scanner keyboard = new Scanner(System.in);// new scanner object
 		int numContacts = 0;
 		
 		//printwritter object
@@ -127,6 +123,7 @@ public class ContactWriterReader {
 			} while (option == 'y');
 			
 			}
+			
 			//printwritter object
 			outputFile = new PrintWriter( new BufferedWriter(new FileWriter(myFile, true)));
 
@@ -148,7 +145,7 @@ public class ContactWriterReader {
 				
 			}
 			
-			//inputFile.close();
+			
 			outputFile.close(); 
 			inputFile.close();
 
@@ -183,6 +180,7 @@ public class ContactWriterReader {
 				System.out.print("Enter the last name: ");
 				input = keyboard.nextLine();
 				contacts[numContacts].setLastName(input);
+				
 
 				System.out.print("Enter the first name: ");
 				input = keyboard.nextLine();
