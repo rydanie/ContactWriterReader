@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,7 +37,7 @@ public class ContactWriterReader {
 		outputFile = new PrintWriter( new BufferedWriter(new FileWriter(myFile, true)));
 		
 		//creates contact array
-		Contact[] contacts = new Contact[25];
+		Contact[] contacts = new Contact[5];
 		
 		// if a the file exists
 		if (myFile.exists()) { // input validation needed stops damage
@@ -61,6 +62,13 @@ public class ContactWriterReader {
 				
 			
 				do{
+					
+					if(numContacts == contacts.length ){
+						
+						Contact[] contactstemp = Arrays.copyOf(contacts, contacts.length + 5);
+						contacts = contactstemp;
+						System.out.println("array extended by 5");
+					}
 				
 					contacts[numContacts] = new Contact();
 				
@@ -113,7 +121,7 @@ public class ContactWriterReader {
 					contacts[numContacts].setZipCode(input);
 	*/
 					System.out.println("Would you like to add another contact? \ny (for yes)\nn (for no)");
-					option = keyboard.nextLine().charAt(0);
+					option = keyboard.nextLine().toLowerCase().charAt(0);
 					
 					numContacts++;
 			} while (option == 'y');
@@ -160,6 +168,15 @@ public class ContactWriterReader {
 			outputFile = new PrintWriter(myFile);
 
 			do {
+				
+				if(numContacts > contacts.length ){
+					
+					Contact[] contactstemp = Arrays.copyOf(contacts, contacts.length + 5);
+					contacts = contactstemp;
+					System.out.println("array extended by 5");
+				}
+			
+			
 				contacts[numContacts] = new Contact();
 
 				System.out.print("Enter the last name: ");
@@ -239,6 +256,13 @@ public class ContactWriterReader {
 		}
 			System.exit(0);// end program
 		
+	}
+	
+	public static boolean bounds(){
+		 
+		int bound;
+		
+		return true;
 	}
 
 	public static class Contact {
