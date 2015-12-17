@@ -37,7 +37,7 @@ public class ContactWriterReader {
 		outputFile = new PrintWriter( new BufferedWriter(new FileWriter(myFile, true)));
 		
 		//creates contact array
-		Contact[] contacts = new Contact[5];
+		Contact[] contacts = new Contact[25];
 		
 		// if a the file exists
 		if (myFile.exists()) { // input validation needed stops damage
@@ -92,7 +92,7 @@ public class ContactWriterReader {
 					input = keyboard.nextLine();
 					contacts[numContacts].setOccupation(input);
 	
-					/*System.out.print("Enter phone number: ");
+					System.out.print("Enter phone number: ");
 					input = keyboard.nextLine();
 					contacts[numContacts].setPhoneNumber(input);
 	
@@ -119,7 +119,7 @@ public class ContactWriterReader {
 					System.out.print("Enter zip code: ");
 					input = keyboard.nextLine();
 					contacts[numContacts].setZipCode(input);
-	*/
+	
 					System.out.println("Would you like to add another contact? \ny (for yes)\nn (for no)");
 					option = keyboard.nextLine().toLowerCase().charAt(0);
 					
@@ -138,14 +138,14 @@ public class ContactWriterReader {
 				outputFile.println(contacts[i].getMiddleName());
 				outputFile.println(contacts[i].getLastName());
 				outputFile.println(contacts[i].getOccupation());
-				/*outputFile.println(contacts[i].getPhoneNumber());
+				outputFile.println(contacts[i].getPhoneNumber());
 				outputFile.println(contacts[i].getEmail());
 				outputFile.println(contacts[i].getStreetNumber());
 				outputFile.println(contacts[i].getStreetName());
 				outputFile.println(contacts[i].getCity());
 				outputFile.println(contacts[i].getStateAB());
 				outputFile.println(contacts[i].getZipCode());
-				*/
+				
 			}
 			
 			//inputFile.close();
@@ -169,7 +169,8 @@ public class ContactWriterReader {
 
 			do {
 				
-				if(numContacts > contacts.length ){
+				// recreates array if it gets too big
+				if(numContacts == contacts.length ){
 					
 					Contact[] contactstemp = Arrays.copyOf(contacts, contacts.length + 5);
 					contacts = contactstemp;
@@ -258,12 +259,6 @@ public class ContactWriterReader {
 		
 	}
 	
-	public static boolean bounds(){
-		 
-		int bound;
-		
-		return true;
-	}
 
 	public static class Contact {
 		Contact() {
