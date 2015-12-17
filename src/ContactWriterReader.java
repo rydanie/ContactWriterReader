@@ -20,7 +20,7 @@ public class ContactWriterReader {
 	public static void main(String[] args) throws IOException { // NOTE: handles
 																// IOException
 		//creates a new file																												// PrintWriter!
-		File myFile = new File("myOutputFile.txt");
+		File myFile = new File("myOutputFile3.txt");
 		//instantiates printwriter
 		PrintWriter outputFile;
 		//instantiates buffered reader
@@ -31,7 +31,10 @@ public class ContactWriterReader {
 		// new scanner object
 		Scanner keyboard = new Scanner(System.in);
 		int numContacts = 0;
-
+		
+		//printwritter object
+		outputFile = new PrintWriter( new BufferedWriter(new FileWriter(myFile, true)));
+		
 		//creates contact array
 		Contact[] contacts = new Contact[25];
 		
@@ -56,7 +59,7 @@ public class ContactWriterReader {
 					line = inputFile.readLine();
 				}
 				
-	
+	       do{
 				System.out.print("\nEnter the last name: ");
 				input = keyboard.nextLine();
 				contacts[numContacts].setLastName(input);
@@ -109,10 +112,10 @@ public class ContactWriterReader {
 				option = keyboard.nextLine().charAt(0);
 
 				numContacts++;
-			} while (option == 'y');
+			}
+			while (option == 'y');
 			
-			//printwritter object
-			outputFile = new PrintWriter( new BufferedWriter(new FileWriter(myFile, true)));
+			
 			
 			//write to file
 			for (int i = 0; i < numContacts; i++) {
@@ -131,11 +134,11 @@ public class ContactWriterReader {
 			}
 			outputFile.close(); 
 			
-			inputFile.close();
+			//inputFile.close();
 			
 			System.exit(0);//end program
 			
-			
+			}
 			//if the file does not exist
 		} else {
 			// printwriter object
@@ -213,11 +216,14 @@ public class ContactWriterReader {
 				outputFile.println(contacts[i].getStateAB());
 				outputFile.println(contacts[i].getZipCode());
 			}
+			
+		
 
 			outputFile.close();
 			
-			System.exit(0);// end program
 		}
+			System.exit(0);// end program
+		
 	}
 
 	public static class Contact {
